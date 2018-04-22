@@ -15,5 +15,8 @@
   "bugs": {
     "url": "https://github.com/emtseng/smart-mirror/issues"
   },
-  "homepage": "https://github.com/emtseng/smart-mirror#readme"
+  "homepage": "https://github.com/emtseng/smart-mirror#readme",
+  "dependencies": {
+    "twitter": "^1.7.1"
+  }
 }

@@ -20,9 +20,7 @@ export default class App extends Component {
   render() {
     return (
       <div>
-      {
-        this.state.body.toString()
-      }
+      There were { this.state.body.length } tweets in this get
       </div>
     )
   }

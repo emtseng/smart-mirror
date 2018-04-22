@@ -21,6 +21,7 @@ const params = {screen_name: 'NYCTSubway'};
 app.use('/api/tweets', (req, res, next) => {
   client.get('statuses/user_timeline', params, function(error, tweets, response) {
     if (!error) {
+      console.log(tweets)
       res.send(tweets)
     }
   })

@@ -1,0 +1,19 @@
+{
+  "name": "smart-mirror",
+  "version": "1.0.0",
+  "description": "Final project for Wendy Ju's Interactive Device",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/emtseng/smart-mirror.git"
+  },
+  "author": "@emtseng",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/emtseng/smart-mirror/issues"
+  },
+  "homepage": "https://github.com/emtseng/smart-mirror#readme"
+}

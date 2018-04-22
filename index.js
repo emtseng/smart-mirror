@@ -15,20 +15,30 @@ app.use('/static', express.static(path.join(__dirname, 'public')))
 
 // Create Twitter client
 const client = new Twitter(secrets)
-const params = {screen_name: 'NYCTSubway'};
+var max_id = null
+
+const params = {
+  screen_name: 'NYCTSubway',
+  exclude_replies: 'true',
+  include_rts: 'false',
+  count: '100',
+  since_id: max_id ? max_id : 66379182
+}
 
 // Set up server route for tweets
 app.use('/api/tweets', (req, res, next) => {
-  client.get('statuses/user_timeline', params, function(error, tweets, response) {
+  client.get('statuses/user_timeline', params, (error, tweets, response) => {
     if (!error) {
-      console.log(tweets)
+      if (!max_id) {
+        max_id = tweets[0].id
+      }
       res.send(tweets)
     }
   })
 })
 
 // Catch-all route for index.html
-app.get('*', function (req, res, next) {
+app.get('*', (req, res, next) => {
   res.sendFile(path.join(__dirname, 'public/index.html'))
 })
 
@@ -41,6 +51,6 @@ app.use((err, req, res, next) => {
 
 // Put server on port 3000
 const PORT = Number(process.env.PORT) || 3000
-app.listen(PORT, function () {
+app.listen(PORT, () => {
   console.log(`Server is listening on port ${PORT}!`)
 });

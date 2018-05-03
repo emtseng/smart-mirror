@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import $ from 'jQuery'
 import axios from 'axios'
 
-import { getDelays, trainLines } from './train_helpers'
+import { getDelays, getTrainDict } from './train_helpers'
 
 export default class App extends Component {
   constructor() {
@@ -10,7 +10,7 @@ export default class App extends Component {
     this.state = {
       timeOfDay: '',
       tweets: [],
-      delays: trainLines
+      trains: getTrainDict()
     }
     this.getTimeOfDay = this.getTimeOfDay.bind(this)
   }
@@ -38,7 +38,7 @@ export default class App extends Component {
         this.setState({
           timeOfDay: this.getTimeOfDay(),
           tweets: res.data,
-          delays: getDelays(this.state.delays, res.data)
+          trains: getDelays(this.state.trains, res.data)
         })
       })
   }
@@ -50,9 +50,9 @@ export default class App extends Component {
         </div>
         <div>
           {
-            Object.keys(this.state.delays).map(line => (
+            Object.keys(this.state.trains).map(train => (
               <div className="line" style={{ margin: '1em' }}>
-                {line} : {this.state.delays[line]}
+                {train} : {this.state.trains[train]}
               </div>
             ))
           }

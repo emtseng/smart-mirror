@@ -8,14 +8,35 @@ export default class App extends Component {
   constructor() {
     super()
     this.state = {
+      timeOfDay: '',
       tweets: [],
       delays: trainLines
     }
+    this.getTimeOfDay = this.getTimeOfDay.bind(this)
   }
-  componentDidMount() {
+  getTimeOfDay() {
+    var hours = (new Date()).getHours()
+      , output = '';
+    switch (hours) {
+      case (hours < 12):
+        output = 'morning'
+        break
+      case (hours >= 12 && hours < 19):
+        output = 'afternoon'
+        break
+      case (hours >= 19):
+        output = 'evening'
+        break
+      default:
+        return 'day'
+    }
+    return output
+  }
+  componentWillMount() {
     axios.get('/api/tweets')
       .then(res => {
         this.setState({
+          timeOfDay: this.getTimeOfDay(),
           tweets: res.data,
           delays: getDelays(this.state.delays, res.data)
         })
@@ -24,8 +45,8 @@ export default class App extends Component {
   render() {
     return (
       <div>
-        <div>
-          Hi there!
+        <div id="greeting">
+          Good {this.state.timeOfDay}!
         </div>
         <div>
           {

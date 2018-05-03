@@ -19,7 +19,7 @@ time, mark, audio, video {
 	padding: 0;
 	border: 0;
 	vertical-align: baseline;
-	font-family: 'Source Code Pro', monospace;
+	font-family: 'Roboto', sans-serif;
 }
 h1, h2, h3, h4, h5, h6 {
 	margin: 0.66em;
@@ -52,4 +52,10 @@ body {
 	display: flex;
 	background-color: black;
 	color: white;
+	padding: 2em;
+	width: 100%;
+}
+
+#greeting {
+	font-size: 2em
 }

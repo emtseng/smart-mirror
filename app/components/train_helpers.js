@@ -39,6 +39,43 @@ export const getDelays = function (delays, tweets) {
         }
       })
     }
+        if (tweet.includes('running local')) {
+    console.log('running local', tweet)
+    var trains = tweet.split('running local')[0].trim().split(' ').filter((item) => item !== 'and').map(item => item.replace(/[.,\/#!$%\^&\*;:{}=\-_`~()]/g, ""))
+    console.log('running local', trains)
+    trains.forEach(train => {
+        if (visited.indexOf(train) === -1) {
+            var line = trains2Lines[train]
+            newDelays[line] = train + ' running local'
+            visited.push(train)
+        }
+    })
+  }  
+    if (tweet.includes('express')) {
+    console.log('express', tweet)
+    var trains = tweet.split('express')[0].trim().split(' ').filter((item) => item !== 'and').map(item => item.replace(/[.,\/#!$%\^&\*;:{}=\-_`~()]/g, ""))
+    console.log('express', trains)
+    trains.forEach(train => {
+        if (visited.indexOf(train) === -1) {
+            var line = trains2Lines[train]
+            newDelays[line] = train + ' running express'
+            visited.push(train) 
+        }
+    }) 
+  }     
+    if (tweet.includes('service change')) {
+    console.log('service change', tweet)
+    var trains = tweet.split('service change')[0].trim().split(' ').filter((item) => item !== 'and').map(item => item.replace(/[.,\/#!$%\^&\*;:{}=\-_`~()]/g, ""))
+    console.log('service change', trains)
+    trains.forEach(train => {
+        if (visited.indexOf(train) === -1) {
+            var line = trains2Lines[train]
+            newDelays[line] = train + ' service change'
+            visited.push(train)           
+        }
+    })
   }
-  return newDelays
 }
+return newDelays
+ }
+

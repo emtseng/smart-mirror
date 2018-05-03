@@ -30,7 +30,7 @@ export default class App extends Component {
         <div>
           {
             Object.keys(this.state.delays).map(line => (
-              <div className="line" style={{margin: '1em'}}>
+              <div className="line" style={{ margin: '1em' }}>
                 {line} : {this.state.delays[line]}
               </div>
             ))
@@ -40,8 +40,8 @@ export default class App extends Component {
         <div>
           {
             this.state.tweets ? this.state.tweets.map(tweet => (
-              <div className="tweet" style={{margin: '1em'}}>
-              {tweet.text}
+              <div className="tweet" style={{ margin: '1em' }}>
+                {tweet.text}
               </div>
             )) : null
           }

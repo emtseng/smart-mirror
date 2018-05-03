@@ -48,7 +48,7 @@ export default class App extends Component {
         <div id="greeting">
           Good {this.state.timeOfDay}!
         </div>
-        <div>
+        <div id="trains">
           {
             Object.keys(this.state.trains).map(train => (
               <div className="line" style={{ margin: '1em' }}>

@@ -56,4 +56,10 @@ body {
 #greeting {
   font-size: 2em; }
 
+#trains {
+  height: 80vh;
+  display: inline-flex;
+  flex-direction: column;
+  flex-wrap: wrap; }
+
 /*# sourceMappingURL=styles.css.map*/

@@ -69,4 +69,41 @@ body {
   flex-direction: column;
   flex-wrap: wrap; }
 
+.line {
+  display: inline-flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  justify-content: space-between;
+  align-items: center; }
+  .line .train {
+    border-radius: 50%;
+    background-color: white;
+    color: white;
+    font-weight: bold;
+    width: 2em;
+    height: 2em;
+    display: inline-flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-right: 1em; }
+  .line .red {
+    background-color: #EE352E; }
+  .line .green {
+    background-color: #00933C; }
+  .line .purple {
+    background-color: #B933AD; }
+  .line .gray {
+    background-color: #A7A9AC; }
+  .line .yellow {
+    background-color: #FCCC0A; }
+  .line .blue {
+    background-color: #0039A6; }
+  .line .orange {
+    background-color: #FF6319; }
+  .line .lightgreen {
+    background-color: #6CBE45; }
+  .line .brown {
+    background-color: #996633; }
+
 /*# sourceMappingURL=styles.css.map*/

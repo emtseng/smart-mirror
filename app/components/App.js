@@ -88,7 +88,10 @@ export default class App extends Component {
           {
             Object.keys(this.state.trains).map(train => (
               <div className="line" style={{ margin: '1em' }}>
-                {train} : {this.state.trains[train]}
+                <div className={`train ${this.state.trains[train].color}`}>
+                  {train}
+                </div>
+                {this.state.trains[train].status}
               </div>
             ))
           }

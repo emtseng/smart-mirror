@@ -1,11 +1,32 @@
-const allTrains = ['1', '2', '3', '4', '5', '6', '7', 'A', 'C', 'E', 'B', 'D', 'F', 'M', 'G', 'J', 'Z', 'L', 'S', 'N', 'Q', 'R', 'W']
+const allTrains = ['1', '2', '3', '4', '5', '6', '7', 'N', 'Q', 'R', 'W', 'L', 'A', 'C', 'E', 'B', 'D', 'F', 'M', 'G', 'J', 'Z', 'S']
 
-export const getTrainDict = function() {
+export const getTrainDict = function () {
   var output = {}
   for (var i = 0; i < allTrains.length; i++) {
     var train = allTrains[i]
-    output[train] = 'Expect regular service'
+    output[train] = {}
+    output[train]['status'] = 'Expect regular service'
+    if ('123'.includes(train)) {
+      output[train]['color'] = 'red'
+    } else if ('456'.includes(train)) {
+      output[train]['color'] = 'green'
+    } else if (train === '7') {
+      output[train]['color'] = 'purple'
+    } else if ('LS'.includes(train)) {
+      output[train]['color'] = 'gray'
+    } else if ('NQRW'.includes(train)) {
+      output[train]['color'] = 'yellow'
+    } else if ('ACE'.includes(train)) {
+      output[train]['color'] = 'blue'
+    } else if ('BDFM'.includes(train)) {
+      output[train]['color'] = 'orange'
+    } else if (train === 'G') {
+      output[train]['color'] = 'lightgreen'
+    } else { //JMZ
+      output[train]['color'] = 'brown'
+    }
   }
+  console.log('output', output)
   return output
 }
 
@@ -22,7 +43,7 @@ export const getDelays = function (delays, tweets) {
       console.log('resumed trains', trains)
       trains.forEach(train => {
         if (visited.indexOf(train) === -1 && allTrains.indexOf(train) > -1) {
-          newDelays[train] = 'Service has resumed'
+          newDelays[train]['status'] = 'Service has resumed'
           visited.push(train)
         }
       })
@@ -34,7 +55,7 @@ export const getDelays = function (delays, tweets) {
       trains = trains.slice(1, -1)
       trains.forEach(train => {
         if (visited.indexOf(train) === -1 && allTrains.indexOf(train) > -1) {
-          newDelays[train] = direction + ' running local'
+          newDelays[train]['status'] = direction + ' running local'
           visited.push(train)
         }
       })
@@ -49,7 +70,7 @@ export const getDelays = function (delays, tweets) {
       trains = trains.filter(item => direction.indexOf(item) === -1)
       trains.forEach(train => {
         if (visited.indexOf(train) === -1 && allTrains.indexOf(train) > -1) {
-          newDelays[train] = direction.join(' ') + at
+          newDelays[train]['status'] = direction.join(' ') + at
           visited.push(train)
         }
       })
@@ -61,7 +82,7 @@ export const getDelays = function (delays, tweets) {
       console.log('express', trains)
       trains.forEach(train => {
         if (visited.indexOf(train) === -1 && allTrains.indexOf(train) > -1) {
-          newDelays[train] = direction + ' running express'
+          newDelays[train]['status'] = direction + ' running express'
           visited.push(train)
         }
       })
@@ -71,7 +92,7 @@ export const getDelays = function (delays, tweets) {
       console.log('service change', trains)
       trains.forEach(train => {
         if (visited.indexOf(train) === -1 && allTrains.indexOf(train) > -1) {
-          newDelays[train] = 'Service change'
+          newDelays[train]['status'] = 'Service change'
           visited.push(train)
         }
       })

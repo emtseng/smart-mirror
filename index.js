@@ -5,7 +5,7 @@ import morgan from 'morgan'
 import bodyParser from 'body-parser'
 
 import Twitter from 'twitter'
-import secrets from './secrets'
+import dotenv from 'dotenv'
 
 // Create web server, add logging capabilities for dev
 const app = express()
@@ -15,12 +15,13 @@ app.use(bodyParser.json(), bodyParser.urlencoded({ extended: true }))
 app.use('/static', express.static(path.join(__dirname, 'public')))
 
 // Setup environment variables
+dotenv.config()
 
 var twitterClientConfig = {
-  'consumer_key': secrets['consumer_key'] || process.env['CONSUMER_KEY'],
-  'consumer_secret': secrets['consumer_secret'] || process.env['CONSUMER_SECRET'],
-  'access_token_key': secrets['access_token_key'] || process.env['ACCESS_TOKEN_KEY'],
-  'access_token_secret': secrets['access_token_secret'] || process.env['ACCESS_TOKEN_SECRET']
+  'consumer_key': process.env['CONSUMER_KEY'],
+  'consumer_secret': process.env['CONSUMER_SECRET'],
+  'access_token_key': process.env['ACCESS_TOKEN_KEY'],
+  'access_token_secret': process.env['ACCESS_TOKEN_SECRET']
 }
 
 // Create Twitter client

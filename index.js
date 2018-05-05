@@ -14,8 +14,17 @@ app.use(bodyParser.json(), bodyParser.urlencoded({ extended: true }))
 // Serve static files from /public folder
 app.use('/static', express.static(path.join(__dirname, 'public')))
 
+// Setup environment variables
+
+var twitterClientConfig = {
+  'consumer_key': secrets['consumer_key'] || process.env['CONSUMER_KEY'],
+  'consumer_secret': secrets['consumer_secret'] || process.env['CONSUMER_SECRET'],
+  'access_token_key': secrets['access_token_key'] || process.env['ACCESS_TOKEN_KEY'],
+  'access_token_secret': secrets['access_token_secret'] || process.env['ACCESS_TOKEN_SECRET']
+}
+
 // Create Twitter client
-const client = new Twitter(secrets)
+const client = new Twitter(twitterClientConfig)
 var max_id = null
 
 const params = {

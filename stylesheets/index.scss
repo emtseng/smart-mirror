@@ -56,12 +56,20 @@ body {
 	width: 100vw;
 }
 
+#app {
+	display: flex;
+	flex-direction: row;
+	flex-wrap: nowrap;
+	height: 100vh;
+}
+
 #greeting {
-	font-size: 2em
+	font-size: 2em;
+	width: 50vw;
 }
 
 #trains {
-	height: 80vh;
+	width: 50vw;
 	display: inline-flex;
 	flex-direction: column;
 	flex-wrap: wrap

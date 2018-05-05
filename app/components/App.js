@@ -13,7 +13,8 @@ export default class App extends Component {
       trains: getTrainDict(),
       weather: '',
       temp: '',
-      weather_icon: ''
+      weather_icon: '',
+      max_id: 0
     }
     this.getTimeOfDay = this.getTimeOfDay.bind(this)
   }
@@ -42,8 +43,28 @@ export default class App extends Component {
         timeOfDay: this.getTimeOfDay(),
         tweets: res.data,
         trains: getDelays(this.state.trains, res.data),
+        max_id: res.data[0].id
       })
     })
+  }
+  componentDidMount() {
+    setInterval(() => {
+      axios.get('/api/tweets')
+      .then(res => {
+        var tweets = res.data
+          , max_id = tweets[0].id
+        if (max_id > this.state.max_id) {
+          console.log('found new tweet, updating')
+          this.setState({
+            tweets,
+            trains: getDelays(this.state.trains, tweets),
+            max_id
+          })
+        } else {
+          console.log('found no new tweets')
+        }
+      })
+    }, 120000)
   }
   render() {
     return (

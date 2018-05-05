@@ -21,7 +21,7 @@ export const getDelays = function (delays, tweets) {
       var trains = tweet.split('train service has resumed')[0].trim().split(' ').filter((item) => item !== 'and').map(item => item.replace(/[.,\/#!$%\^&\*;:{}=\-_`~()]/g, ""))
       console.log('resumed trains', trains)
       trains.forEach(train => {
-        if (visited.indexOf(train) === -1) {
+        if (visited.indexOf(train) === -1 && allTrains.indexOf(train) > -1) {
           newDelays[train] = 'Service has resumed'
           visited.push(train)
         }
@@ -33,7 +33,7 @@ export const getDelays = function (delays, tweets) {
       var direction = trains[0]
       trains = trains.slice(1, -1)
       trains.forEach(train => {
-        if (visited.indexOf(train) === -1) {
+        if (visited.indexOf(train) === -1 && allTrains.indexOf(train) > -1) {
           newDelays[train] = direction + ' running local'
           visited.push(train)
         }
@@ -48,7 +48,7 @@ export const getDelays = function (delays, tweets) {
       var direction = trains.filter(item => allTrains.indexOf(item) === -1)
       trains = trains.filter(item => direction.indexOf(item) === -1)
       trains.forEach(train => {
-        if (visited.indexOf(train) === -1) {
+        if (visited.indexOf(train) === -1 && allTrains.indexOf(train) > -1) {
           newDelays[train] = direction.join(' ') + at
           visited.push(train)
         }
@@ -60,7 +60,7 @@ export const getDelays = function (delays, tweets) {
       , trains = trains.slice(1,-1)
       console.log('express', trains)
       trains.forEach(train => {
-        if (visited.indexOf(train) === -1) {
+        if (visited.indexOf(train) === -1 && allTrains.indexOf(train) > -1) {
           newDelays[train] = direction + ' running express'
           visited.push(train)
         }
@@ -70,7 +70,7 @@ export const getDelays = function (delays, tweets) {
       var trains = tweet.split('service change')[0].trim().split(' ').filter((item) => item !== 'and').map(item => item.replace(/[.,\/#!$%\^&\*;:{}=\-_`~()]/g, ""))
       console.log('service change', trains)
       trains.forEach(train => {
-        if (visited.indexOf(train) === -1) {
+        if (visited.indexOf(train) === -1 && allTrains.indexOf(train) > -1) {
           newDelays[train] = 'Service change'
           visited.push(train)
         }

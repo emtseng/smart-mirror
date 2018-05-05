@@ -27,23 +27,18 @@ var twitterClientConfig = {
 
 // Create Twitter client
 const client = new Twitter(twitterClientConfig)
-var max_id = null
 
 const params = {
   screen_name: 'NYCTSubway',
   exclude_replies: 'true',
   include_rts: 'false',
-  count: '100',
-  since_id: max_id ? max_id : 66379182
+  count: '200',
 }
 
 // Set up server route for tweets
 app.use('/api/tweets', (req, res, next) => {
   client.get('statuses/user_timeline', params, (error, tweets, response) => {
     if (!error) {
-      if (!max_id) {
-        max_id = tweets[0].id
-      }
       res.send(tweets)
     }
   })

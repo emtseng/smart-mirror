@@ -10,7 +10,10 @@ export default class App extends Component {
     this.state = {
       timeOfDay: '',
       tweets: [],
-      trains: getTrainDict()
+      trains: getTrainDict(),
+      weather: '',
+      temp: '',
+      weather_icon: ''
     }
     this.getTimeOfDay = this.getTimeOfDay.bind(this)
   }
@@ -25,20 +28,40 @@ export default class App extends Component {
     }
   }
   componentWillMount() {
-    axios.get('/api/tweets')
-      .then(res => {
-        this.setState({
-          timeOfDay: this.getTimeOfDay(),
-          tweets: res.data,
-          trains: getDelays(this.state.trains, res.data)
-        })
+    axios.get('/api/weather')
+    .then(res => {
+      this.setState({
+        weather: res.data.weather,
+        temp: res.data.temp,
+        weather_icon: res.data.weather_icon
       })
+      return axios.get('/api/tweets')
+    })
+    .then(res => {
+      this.setState({
+        timeOfDay: this.getTimeOfDay(),
+        tweets: res.data,
+        trains: getDelays(this.state.trains, res.data),
+      })
+    })
   }
   render() {
     return (
       <div>
         <div id="greeting">
           Good {this.state.timeOfDay}!
+        </div>
+        <div id="weather">
+          <img src={this.state.weather_icon} />
+          {
+            this.state.weather
+          }
+          {
+            this.state.temperature_string
+          }
+          {
+            this.state.temp
+          }
         </div>
         <div id="trains">
           {

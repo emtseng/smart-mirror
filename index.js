@@ -6,6 +6,7 @@ import bodyParser from 'body-parser'
 
 import Twitter from 'twitter'
 import dotenv from 'dotenv'
+import axios from 'axios'
 
 // Create web server, add logging capabilities for dev
 const app = express()
@@ -46,6 +47,28 @@ app.use('/api/tweets', (req, res, next) => {
       res.send(tweets)
     }
   })
+})
+
+// Set up server route
+
+app.use('/api/weather', (req, response, next) => {
+  axios.get('http://api.wunderground.com/api/' + process.env.WUNDERGROUND_KEY.toString() + '/geolookup/q/autoip.json')
+    .then(res => {
+      var state = res.data.location.state
+        , city = res.data.location.city;
+      return axios.get('http://api.wunderground.com/api/' + process.env.WUNDERGROUND_KEY.toString() + '/conditions/q/' + state + '/' + city.replace(' ', '_') + '.json')
+    })
+    .then(res => {
+      var data = res.data.current_observation
+      response.send({
+        weather: data['weather'],
+        temp: data['temperature_string'],
+        weather_icon: data['icon_url']
+      })
+    })
+    .catch(err => {
+      console.error(err)
+    })
 })
 
 // Catch-all route for index.html

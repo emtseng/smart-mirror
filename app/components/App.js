@@ -16,21 +16,13 @@ export default class App extends Component {
   }
   getTimeOfDay() {
     var hours = (new Date()).getHours()
-      , output = '';
-    switch (hours) {
-      case (hours < 12):
-        output = 'morning'
-        break
-      case (hours >= 12 && hours < 19):
-        output = 'afternoon'
-        break
-      case (hours >= 19):
-        output = 'evening'
-        break
-      default:
-        return 'day'
+    if (hours < 12) {
+      return 'morning'
+    } else if (hours >= 19) {
+      return 'evening'
+    } else {
+      return 'afternoon'
     }
-    return output
   }
   componentWillMount() {
     axios.get('/api/tweets')

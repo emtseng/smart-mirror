@@ -57,7 +57,7 @@ body {
 
 #app {
 	display: flex;
-	flex-direction: row;
+	flex-direction: column;
 	flex-wrap: nowrap;
 	height: 100vh;
 	width: 100vw;
@@ -74,7 +74,9 @@ body {
 }
 
 #trains {
-	width: 30%;
+	width: 100%;
+	height: 40%;
+	margin-bottom: 10em;
 	display: inline-flex;
 	flex-direction: column;
 	flex-wrap: wrap
@@ -88,6 +90,7 @@ body {
 	align-items: center;
 	font-size: 1.25em;
 	margin-bottom: 1em;
+	margin-right: 13em;
 	.train {
 		border-radius: 50%;
 		background-color: white;

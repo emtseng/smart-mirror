@@ -57,14 +57,19 @@ body {
   display: flex;
   flex-direction: row;
   flex-wrap: nowrap;
-  height: 100vh; }
+  height: 100vh;
+  width: 100vw;
+  justify-content: space-around; }
 
 #greeting {
   font-size: 2em;
   width: 50vw; }
 
+#weather {
+  font-size: 1em; }
+
 #trains {
-  width: 50vw;
+  width: 25vw;
   display: inline-flex;
   flex-direction: column;
   flex-wrap: wrap; }
@@ -74,7 +79,8 @@ body {
   flex-direction: row;
   flex-wrap: nowrap;
   justify-content: space-between;
-  align-items: center; }
+  align-items: center;
+  font-size: 1.25em; }
   .line .train {
     border-radius: 50%;
     background-color: white;

@@ -73,15 +73,16 @@ export default class App extends Component {
           Good {this.state.timeOfDay}!
           <div id="weather">
             <img src={this.state.weather_icon} />
+            <div id="weather-txt">
             {
               this.state.weather
             }
-            {
-              this.state.temperature_string
-            }
+            </div>
+            <div id="temp-txt">
             {
               this.state.temp
             }
+            </div>
           </div>
         </div>
         <div id="trains">
@@ -96,7 +97,6 @@ export default class App extends Component {
             ))
           }
         </div>
-        <hr />
         {
           /*
           <div>

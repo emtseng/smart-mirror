@@ -19,7 +19,8 @@ serial.on('open', function () {
 serial.on('data', function (data) {
   console.log('Registered data', data)
   console.log('Registered data.toString()', data.toString())
-  if (data === 'PRESENT' && !hdmiOn) { //if person is present and HDMI is OFF, turn ON
+  var isPresent = data.toString()
+  if (isPresent === '1' && !hdmiOn) { //if person is present and HDMI is OFF, turn ON
     exec("tvservice -p", function (error, stdout, stderr) {
       if (error) {
         console.error(error)
@@ -27,7 +28,7 @@ serial.on('data', function (data) {
       console.log("Executed tvservice -p");
       hdmiOn = true;
     })
-  } else if (data === 'AWAY' && hdmiOn) { //if Person is AWAY and HDMI is ON, turnoff
+  } else if (isPresent === '0' && hdmiOn) { //if Person is AWAY and HDMI is ON, turnoff
     exec("tvservice -o", function (error, stdout, stderr) {
       if (error) {
         console.error(error)

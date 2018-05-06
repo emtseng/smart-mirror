@@ -18,6 +18,7 @@ serial.on('open', function () {
 
 serial.on('data', function (data) {
   console.log('Registered data', data)
+  console.log('Registered data.toString()', data.toString())
   console.log('Is the data PRESENT?', data === 'PRESENT')
   console.log('Is the data AWAY?', data === 'AWAY')
   if (data === 'PRESENT' && !hdmiOn) { //if person is present and HDMI is OFF, turn ON

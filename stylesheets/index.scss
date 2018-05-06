@@ -52,7 +52,6 @@ body {
 	display: flex;
 	background-color: black;
 	color: white;
-	padding: 2em;
 	width: 100vw;
 }
 
@@ -62,7 +61,7 @@ body {
 	flex-wrap: nowrap;
 	height: 100vh;
 	width: 100vw;
-	justify-content: space-around;
+	justify-content: space-between;
 }
 
 #greeting {
@@ -75,7 +74,7 @@ body {
 }
 
 #trains {
-	width: 25vw;
+	width: 30%;
 	display: inline-flex;
 	flex-direction: column;
 	flex-wrap: wrap
@@ -88,6 +87,7 @@ body {
 	justify-content: space-between;
 	align-items: center;
 	font-size: 1.25em;
+	margin-bottom: 1em;
 	.train {
 		border-radius: 50%;
 		background-color: white;

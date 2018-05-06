@@ -40,9 +40,6 @@ void setup() {
   distanceSensor.begin(A0);
   int initDistance = distanceSensor.getDistanceRaw();
 
-  Serial.print(F("INFO: Distance sensor listening, initial distance: "));
-  Serial.println(initDistance);
-
 }
 
 void loop() {
@@ -72,7 +69,7 @@ void activateReportMirrorUse() {
 
   countAway = 0;
   inUse = true;
-  Serial.println("PRESENT");
+  Serial.println(1);
 }
 void disableandReportMirrorIdle() {
 
@@ -81,7 +78,7 @@ void disableandReportMirrorIdle() {
   if (countAway > 100) {
 
     inUse = false;
-    Serial.println("AWAY");
+    Serial.println(0);
 
   }
 

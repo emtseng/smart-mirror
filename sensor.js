@@ -6,7 +6,6 @@ console.log('got here');
 // start the serial port connection and read on newlines
 const serial = new SerialPort('/dev/ttyUSB0', {
   baudRate: 9600
-
 });
 const parser = new readLine({
   delimiter: '\n'
@@ -17,6 +16,7 @@ serial.pipe(parser);
 serial.on('open', function () {
   console.log('~Port is open.');
   parser.on('data', function (data) { //if person is present and HDMI is OFF, turn ON
+    console.log('data', data)
     if (data === 'PRESENT' && !hdmiOn) {
       exec("tvservice -p", function (error, stdout, stderr) {
         if (error) {

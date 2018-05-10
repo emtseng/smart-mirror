@@ -1,8 +1,10 @@
 # smart-mirror
 
-Final project for Wendy Ju's Interactive Device Design. This is a web app built in Node/Express/React that serves information on New York City subway delays.
+This repo contains web app and Arduino code for our final project for Wendy Ju's Interactive Device Design.
 
-## Installation & running the app
+Check out the wiki to learn more about the final product.
+
+## Installation
 
 First, install the package. There are a lot of dependencies. This will take a little bit.
 
@@ -15,3 +17,5 @@ Then, procure a ``.env`` file from Emily to get the API keys. Once that's in the
 ```
 npm start
 ```
+
+Made with <3 at Cornell Tech.

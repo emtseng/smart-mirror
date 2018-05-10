@@ -10,7 +10,7 @@ First, install the package. There are a lot of dependencies. This will take a li
 npm i
 ```
 
-Then, procure a ``secrets.js`` file from Emily. Once that's in the right place, you should be able to run the app.
+Then, procure a ``.env`` file from Emily to get the API keys. Once that's in the right place, you should be able to run the app.
 
 ```
 npm start

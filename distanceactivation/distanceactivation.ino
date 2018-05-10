@@ -15,10 +15,6 @@ DistanceGP2Y0A21YK distanceSensor;
 RunningMedian distanceMedian = RunningMedian(8);
 
 
-// input voltage area from which a person is considered in front of the mirror
-// full input voltage area 0-1023, output voltage curve:
-// https://cdn.sparkfun.com//assets/parts/1/8/4/IRSensor-3.jpg
-
 // the higher the value (voltage), the closer one is to the mirror
 
 // standing in front / in use: from about 60cm to 5cm
